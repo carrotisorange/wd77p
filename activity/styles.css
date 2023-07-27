@@ -1,0 +1,20 @@
+/* body {
+ background-image: url("/activity/art-institute-of-chicago-2OPezO3Sm1w-unsplash.jpg");
+ background-repeat: repeat-x;
+ background-size: 100px;
+ background-repeat: repeat;
+} */
+
+#item{
+    margin: 10px;
+    border: 10px solid red;
+    margin: 100px;
+    padding: 100px;
+    border-radius: 100px;
+    width: 100px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+table{
+    overflow: hidden;
+}
