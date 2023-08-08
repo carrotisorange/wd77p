@@ -1,0 +1,35 @@
+JavaScript 
+    high level, interpreted programming language
+    ECMAScript
+    language of the browser
+
+// Operators
+    Assignment = 
+    Arithmetic + / * - % 
+        increment ++ 
+            preincrement ++a   
+            postincrement a++  
+        decrement -- 
+            predecrement --a
+            postdrecement a--
+    String '' + 
+ 
+    Precedence - () order of operators - pemdas
+    Function _Invocation ()
+    Relational < > >= <= == != === 
+    Logical and && or ||- truth table
+    Member accessor (objects) .
+    Code Block {}
+    Array Element Access []
+    Ternary ? : 
+    end ;
+
+let x = 1;
+// Expressions
+x+1 = 2 ,
+
+x==1 = true, false
+x==1 && x=='1' = true false
+// Statements
+let x = 1;
+// Blocks

@@ -5,8 +5,8 @@ let filter = document.getElementById('filter');
 
 //listen to an event
 form.addEventListener('submit', addItem);
-itemList.addEventListener('click', removeItem);
-filter.addEventListener('keyup', filterItems);
+itemList.addEventListener('click', removeItem());
+filter.addEventListener('keyup', filterItems());
 
 //add item function
 function addItem(e){
