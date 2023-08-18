@@ -88,65 +88,203 @@
 
 // sort(3,2,1);
 
-class NewArray{
+// class NewArray{
+//     constructor(){
+//         this.length = 0,
+//         this.data = {}
+//     }
+
+// // retrieve an item
+//     getItem(index){
+//         return this.data[index];
+//     }
+// // push an item
+
+//     pushItem(item){
+//         this.data[this.length] = item;
+//         this.length++;
+//     }
+
+// //pop an item
+//     popItem(){
+//         const lastItem = this.data[this.length-1];
+//         delete this.data[this.length - 1];
+//         this.length--;
+//         return lastItem;
+//     }
+
+//     //remove an item
+//     deleteItem(index){
+//         const item = this.data[index];
+//         this.shiftItems(index);
+//         return item;
+//     }
+
+//     shiftItems(index){
+//         for(let i = index; i<this.length-1; i++){
+//             this.data[i] = this.data[i+1];
+//         }
+//         delete this.data[this.length-1];
+//         this.length--;
+//     }
+
+//     printItems(){
+//         for(let i = 0; i<=this.length-1; i++){
+//             console.log(this.data[i]);
+//         }
+//     }
+
+// }
+
+// let arr = new NewArray();
+
+// arr.pushItem(1);
+// arr.pushItem(2);
+// arr.pushItem(3);
+// // arr.printItems(arr);
+// console.log(arr);
+// console.log(arr.getItem(1));
+// // console.log(arr.popItem());
+// console.log(arr);
+// // console.log(arr.deleteItem(1));
+// // console.log(arr);
+// console.log(arr.shiftItems(2));
+// console.log(arr);
+
+class Node{
+    constructor(element){
+        this.element = element;
+        this.next = null;
+    }
+}
+class LinkedList{
     constructor(){
-        this.length = 0,
-        this.data = {}
+        this.head = null;
+        this.size = 0;
     }
 
-// retrieve an item
-    getItem(index){
-        return this.data[index];
-    }
-// push an item
+    //add(element)
+    add(element){
+        let node = new Node(element);
 
-    pushItem(item){
-        this.data[this.length] = item;
-        this.length++;
-    }
+        let current;
 
-//pop an item
-    popItem(){
-        const lastItem = this.data[this.length-1];
-        delete this.data[this.length - 1];
-        this.length--;
-        return lastItem;
-    }
-
-    //remove an item
-    deleteItem(index){
-        const item = this.data[index];
-        this.shiftItems(index);
-        return item;
-    }
-
-    shiftItems(index){
-        for(let i = index; i<this.length-1; i++){
-            this.data[i] = this.data[i+1];
+        if(this.head == null){
+            this.head = node;
         }
-        delete this.data[this.length-1];
-        this.length--;
+        else{
+            current = this.head;
+
+            while(current.next){
+                current.next = node;
+            }
+
+            current.next = node;
+        }
+        this.size++;
     }
 
-    printItems(){
-        for(let i = 0; i<=this.length-1; i++){
-            console.log(this.data[i]);
+    //insertAt(element, index)
+    insertAt(element, index){
+        if(index < 0 || index > this.size){
+            return console.log("Please enter a valid index");
+        }else{ 
+            var node = new Node(element);
+
+            let current, previous;
+
+            current = this.head;
+
+            if(index === 0){
+                node.next = this.head;
+                this.head = node;
+            }else{
+                current = this.head;
+                var i = 0;
+
+                while(i < index){
+                    i++;
+                    previous = current;
+                    current = current.next;
+                }
+
+                node.next = current;
+                previous.next= node;
+            }
+            this.size++;
         }
+    }
+
+    //removeFrom(index)
+    removeFrom(index){
+        if(index < 0 || index > this.size){
+            return console.log("Please enter a valid index");
+        }else{ 
+           let current, previous, i = 0;
+           current = this.head;
+           previous = current;
+
+           if(index === 0){
+            this.head = current.next;
+           }else{
+                while(i < index){
+                    i++;
+                    previous = current;
+                    current = current.next;
+                }
+
+                previous.next = current.next;
+           }
+           this.size--;
+
+           return current.element;
+        }
+
+    }
+
+
+    //removeElement(element)
+    removeElement(element){
+        let current = this.head;
+        let previous = null;
+
+        while(current != null){
+           if(current.element === element){
+                if(previous === null){
+                this.head = current.next;
+                }else{
+                previous.next = current.next;
+            }
+            this.size--;
+            return current.element;
+           }
+           previous = current;
+           current = current.next;
+        }
+        return -1;
+    }
+    
+
+    //printList()
+    printList(){
+        let current = this.head;
+        let str = "";
+        while(current){
+            str += current.element + ", ";
+            current = current.next; 
+        }
+        console.log(str);
     }
 
 }
 
-let arr = new NewArray();
-
-arr.pushItem(1);
-arr.pushItem(2);
-arr.pushItem(3);
-// arr.printItems(arr);
-console.log(arr);
-console.log(arr.getItem(1));
-// console.log(arr.popItem());
-console.log(arr);
-// console.log(arr.deleteItem(1));
-// console.log(arr);
-console.log(arr.shiftItems(2));
-console.log(arr);
+let linkedList = new LinkedList();
+linkedList.add('123');
+linkedList.add('456');
+linkedList.printList()
+linkedList.insertAt(333,1);
+linkedList.printList();
+console.log(linkedList.removeFrom(0));
+linkedList.printList();
+console.log(linkedList.removeElement(333));
+linkedList.printList();
