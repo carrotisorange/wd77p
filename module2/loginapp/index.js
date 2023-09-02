@@ -3,7 +3,10 @@ const express = require('express');
 const ejs = require('ejs');
 const path = require('path');
 const bodyParser = require('body-parser');
-// const router = require('./router');
+const { v4: uuidv4 } = require('uuid');
+const session = require('express-session')
+ 
+const router = require('./router');
 
 //create the server
 const app = express();
@@ -25,32 +28,16 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+//configure the session
+app.use(session({
+    secret: uuidv4(),
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure:false}
+}));
+
 //specify the routers
-// app.use('/route', router);
-
-//route to display the login page
-app.get('/', (req, res)=>{
-    res.render('login',{title:'Login Page'});
-});
-
-const credential = {
-    email: 'kodego@test.com',
-    password: '123123'
-};
-
-//route for authenticating a user
-app.post('/login',(req, res)=>{
-    if(req.body.email == credential.email && req.body.password == credential.password){
-        res.redirect('/dashboard');
-    }else{
-        res.end('invalid credentials');
-    }
-});
-
-//route for the dashboard
-app.get('/dashboard',(req, res)=>{
-    res.render('dashboard',{title:'Dashboard', user: 'Andy'});
-});
+app.use('/', router);
 
 //listen to the server
 app.listen(port, ()=>{
