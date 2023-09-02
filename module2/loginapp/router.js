@@ -54,7 +54,11 @@ router.post('/login', [
 
 //route to the dashboard
 router.get('/dashboard',(req, res)=>{
-    res.render('dashboard',{title:'Dashboard', user: req.session.user });
+    if(req.session.user){
+        res.render('dashboard',{title:'Dashboard', user: req.session.user });
+    }else{
+        res.send(403);
+    }
 });
 
 //route to destroy the session
