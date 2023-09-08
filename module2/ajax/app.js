@@ -45,15 +45,7 @@
 // }
 
 // function getPosts(){
-//     let xhr = new XMLHttpRequest();
 
-//     xhr.open('GET', posts);
-
-//     xhr.onload = function(){
-//         console.log(posts);
-//     }
-
-//     xhr.send();
 
 // }
 
